@@ -151,7 +151,13 @@ void QMC5883LCompass::setCalibration(int x_min, int x_max, int y_min, int y_max,
 	_vCalibration[2][1] = z_max;
 }
 
-
+/**
+	SET MAGNETIC DECLINATION
+	Set the value of the magnetic declination.
+**/
+void QMC5883LCompass::setMagneticDeclination(float magneticDeclination){
+	_magneticDeclination = magneticDeclination;
+}
 
 /**
 	READ
@@ -329,8 +335,11 @@ int QMC5883LCompass::_get(int i){
 	@return int azimuth
 **/
 int QMC5883LCompass::getAzimuth(){
-	int a = atan2( getY(), getX() ) * 180.0 / PI;
-	return a < 0 ? 360 + a : a;
+	float a = atan2( getY(), getX() ) * 180.0 / PI;
+	a += _magneticDeclination;
+	int b = (int)(a + 0.5);	
+	b = b > 359 ? b - 360 : b;
+	return b < 0 ? 360 + b : b;
 }
 
 

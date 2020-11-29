@@ -14,6 +14,7 @@ class QMC5883LCompass{
     void setMode(byte mode, byte odr, byte rng, byte osr);
 	void setSmoothing(byte steps, bool adv);
 	void setCalibration(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max);
+	void setMagneticDeclination(float magneticDeclination);
     void setReset();
     void read();
 	int getX();
@@ -40,6 +41,7 @@ class QMC5883LCompass{
 	int _vCalibration[3][2];
 	int _vCalibrated[3];
 	void _applyCalibration();
+	float _magneticDeclination = 0.0;
 	const char _bearings[16][3] =  {
 		{' ', ' ', 'N'},
 		{'N', 'N', 'E'},
