@@ -15,6 +15,7 @@ class QMC5883LCompass{
 	void setSmoothing(byte steps, bool adv);
 	void setCalibration(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max);
 	void setMagneticDeclination(float magneticDeclination);
+	float getMagneticDeclination();
     void setReset();
     void read();
 	int getX();

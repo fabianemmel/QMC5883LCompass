@@ -51,10 +51,7 @@ OVER SAMPLE RATIO (OSR)
 */
 
 
-
-#include "Arduino.h"
 #include "QMC5883LCompass.h"
-#include <Wire.h>
 
 QMC5883LCompass::QMC5883LCompass() {
 }
@@ -157,6 +154,15 @@ void QMC5883LCompass::setCalibration(int x_min, int x_max, int y_min, int y_max,
 **/
 void QMC5883LCompass::setMagneticDeclination(float magneticDeclination){
 	_magneticDeclination = magneticDeclination;
+}
+
+/**
+	GET MAGNETIC DECLINATION
+	Get the value of the magnetic declination.
+**/
+float QMC5883LCompass::getMagneticDeclination()
+{
+	return _magneticDeclination;
 }
 
 /**
